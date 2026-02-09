@@ -1,0 +1,146 @@
+---
+import { Image } from 'astro:assets';
+import { getCollection } from 'astro:content';
+import BaseHead from '../../components/BaseHead.astro';
+import Footer from '../../components/Footer.astro';
+import FormattedDate from '../../components/FormattedDate.astro';
+import Header from '../../components/Header.astro';
+import { SITE_DESCRIPTION, SITE_TITLE } from '../../consts';
+
+const posts = (await getCollection('blog')).sort(
+	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+);
+
+const groupedPosts = posts.reduce((acc: Record<string, Record<string, { name: string, posts: any[] }>>, post) => {
+	const year = post.data.pubDate.getFullYear();
+	const month = post.data.pubDate.getMonth();
+	const monthName = post.data.pubDate.toLocaleString('zh-CN', { month: 'long' });
+	
+	if (!acc[year]) {
+		acc[year] = {};
+	}
+	
+	if (!acc[year][month]) {
+		acc[year][month] = {
+			name: monthName,
+			posts: []
+		};
+	}
+	
+	acc[year][month].posts.push(post);
+	return acc;
+}, {});
+---
+<!doctype html>
+<html lang="zh-CN">
+	<head>
+		<BaseHead title={`归档 - ${SITE_TITLE}`} description={'查看所有文章的归档。'} />
+		<style>
+			.archive {
+				max-width: 800px;
+				margin: 0 auto;
+				padding: 2rem;
+			}
+			
+			.archive h1 {
+				font-size: 2.5rem;
+				margin-bottom: 2rem;
+				text-align: center;
+			}
+			
+			.year-group {
+				margin-bottom: 3rem;
+			}
+			
+			.year-title {
+				font-size: 1.8rem;
+				margin-bottom: 1rem;
+				padding-bottom: 0.5rem;
+				border-bottom: 1px solid #eaeaea;
+			}
+			
+			.month-group {
+				margin-bottom: 1.5rem;
+			}
+			
+			.month-title {
+				font-size: 1.3rem;
+				margin-bottom: 0.8rem;
+				color: #666;
+			}
+			
+			.post-list {
+				list-style: none;
+				padding: 0;
+				margin: 0;
+			}
+			
+			.post-item {
+				margin-bottom: 0.8rem;
+				padding-bottom: 0.8rem;
+				border-bottom: 1px solid #f5f5f5;
+			}
+			
+			.post-item:last-child {
+				border-bottom: none;
+				margin-bottom: 0;
+				padding-bottom: 0;
+			}
+			
+			.post-link {
+				color: #333;
+				text-decoration: none;
+				font-size: 1.1rem;
+				display: block;
+				margin-bottom: 0.3rem;
+			}
+			
+			.post-link:hover {
+				color: #0070f3;
+				text-decoration: underline;
+			}
+			
+			.post-meta {
+				font-size: 0.9rem;
+				color: #999;
+			}
+		</style>
+	</head>
+	<body>
+		<Header />
+		<main>
+			<section class="archive">
+				<h1>文章归档</h1>
+				
+				{Object.entries(groupedPosts).sort(([yearA], [yearB]) => parseInt(yearB) - parseInt(yearA)).map(([year, months]) => (
+						<div class="year-group">
+							<h2 class="year-title">{year}</h2>
+							
+							{Object.entries(months).sort(([monthA], [monthB]) => parseInt(monthB) - parseInt(monthA)).map(([month, { name, posts }]) => (
+								<div class="month-group">
+									<h3 class="month-title">{name}</h3>
+									<ul class="post-list">
+										{posts.map(post => (
+											<li class="post-item">
+												<a href={`/posts/${post.id}`} class="post-link">
+													{post.data.title}
+												</a>
+												<div class="post-meta">
+													<FormattedDate date={post.data.pubDate} />
+												</div>
+											</li>
+										))}
+									</ul>
+								</div>
+							))}
+						</div>
+					))}
+				
+				{Object.keys(groupedPosts).length === 0 && (
+					<p>暂无文章</p>
+				)}
+			</section>
+		</main>
+		<Footer />
+	</body>
+</html>

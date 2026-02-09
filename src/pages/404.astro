@@ -6,12 +6,46 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="zh-CN">
 	<head>
-		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+		<BaseHead title={`页面未找到 - ${SITE_TITLE}`} description={'抱歉，您访问的页面不存在或已被移动。'} />
 		<style>
 			main {
 				width: 960px;
+			}
+			section {
+				display: flex;
+				justify-self: center;
+				align-items: center;
+				height: 50vh;
+				
+			}
+			section div {
+				margin: 0 auto;
+				padding: 3em 0;
+				width: 100%;
+				text-align: center;
+			}
+			section div h1 {
+				font-size: 3rem;
+				margin-bottom: 20px;
+			}
+			section div p {
+				font-size: 1.25rem;
+				margin-bottom: 20px;
+			}
+			section div a {
+				display: inline-block;
+				padding: 0.75em 1em;
+				border-radius: 0.5em;
+				font-size: 1.25rem;
+				color: var(--black);
+				border-bottom: 2px solid transparent;
+				text-decoration: none;
+			}
+			section div a:hover {
+				font-weight: bold;
+				border: 2px solid var(--accent);
 			}
 		</style>
 	</head>
@@ -19,7 +53,11 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 		<Header />
 		<main>
 			<section>
-				<h1>404 Not Found</h1>
+				<div>
+					<h1>页面未找到</h1>
+					<p>抱歉，您访问的页面不存在或已被移动。</p>
+					<a href="/">返回首页</a>
+				</div>
 			</section>
 		</main>
 		<Footer />
