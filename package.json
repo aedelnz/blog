@@ -13,7 +13,7 @@
     "@astrojs/rss": "^4.0.15",
     "@astrojs/sitemap": "^3.7.0",
     "@douyinfe/semi-ui": "^2.94.0",
-    "astro": "^5.17.1",
+    "astro": "^5.18.1",
     "sharp": "^0.34.3"
   }
 }
