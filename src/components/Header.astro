@@ -1,166 +1,49 @@
 ---
-import { SITE_TITLE } from '../consts';
-import HeaderLink from './HeaderLink.astro';
+import { SITE_TITLE } from "../consts";
+import HeaderLink from "./HeaderLink.astro";
+const navdata = [
+	{ href: "/", text: "文章" },
+	{ href: "/archive", text: "归档" },
+];
 ---
 
-<header>
-	<nav>
-		<h2><a href="/">{SITE_TITLE}</a></h2>
-		<button class="menu-toggle" aria-label="Toggle menu">
-			<span></span>
-			<span></span>
-			<span></span>
-		</button>
-		<div class="internal-links">
-			<HeaderLink href="/">首页</HeaderLink>
-			<HeaderLink href="/archive">归档</HeaderLink>
-		</div>
-	</nav>
-</header>
-<script>
-	document.addEventListener('DOMContentLoaded', () => {
-		const menuToggle = document.querySelector('.menu-toggle');
-		const internalLinks = document.querySelector('.internal-links');
-		if (!menuToggle || !internalLinks) {
-			return;
-		}
-		
-		menuToggle.addEventListener('click', () => {
-			internalLinks.classList.toggle('active');
-			menuToggle.classList.toggle('active');
-		});
+<header class="semi-layout-header sticky top-0 z-50 transition-all">
+	<div class="container mx-auto px-4">
+		<div class="semi-navigation semi-navigation-horizontal rounded-bl-3xl rounded-br-3xl shadow-md bg-white relative">
+			<div class="semi-navigation-inner flex justify-between items-center py-3">
+				<!-- Logo 左侧 -->
+				<div class="semi-navigation-header-list-outer">
+					<div class="semi-navigation-header">
+						<a href="/" class="semi-icon" style="font-size: 24px;">{SITE_TITLE}</a>
+					</div>
+				</div>
 
-		// Close menu when clicking outside
-		document.addEventListener('click', (event) => {
-			if (!menuToggle.contains(event.target as Node | null) && !internalLinks.contains(event.target as Node | null)) {
-				internalLinks.classList.remove('active');
-				menuToggle.classList.remove('active');
-			}
-		});
+				<!-- 手机端菜单按钮 -->
+				<button id="menuBtn" class="md:hidden text-xl px-2">☰</button>
+
+				<!-- 导航 → 电脑显示 / 手机隐藏点击显示 -->
+				<div id="navMenu" class="semi-navigation-footer hidden md:block absolute md:static top-full left-0 w-full md:w-auto bg-white rounded-b-3xl shadow-md md:shadow-none">
+					<div class="semi-navigation-list-wrapper">
+						<ul class="semi-navigation-list flex flex-col md:flex-row items-center gap-1 md:gap-4 p-4 md:p-0">
+							{navdata.map((item) => (
+								<HeaderLink href={item.href} class="semi-navigation-item px-3 py-2 w-full md:w-auto text-center">
+									{item.text}
+								</HeaderLink>
+							))}
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</header>
+
+<!-- 手机菜单点击切换 JS -->
+<script>
+	const btn = document.getElementById('menuBtn');
+	const menu = document.getElementById('navMenu');
+	btn?.addEventListener('click', () => {
+		menu?.classList?.toggle('hidden');
+		
 	});
 </script>
-<style>
-	header {
-		margin: 0;
-		padding: 0 1em;
-		height: 80px;
-		background: white;
-		box-shadow: 0 2px 8px rgba(var(--black), 5%);
-		position: fixed;
-		top: 0;
-		left: 0;
-		right: 0;
-		z-index: 1000;
-	}
-	h2 {
-		margin: 0;
-		font-size: 1.25em;
-		padding: 1em 0.5em;
-		color: var(--black);
-		border-bottom: 4px solid transparent;
-	}
-
-	nav {
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
-		height: 100%;
-	}
-	nav a {
-		padding: 1em 0.5em;
-		color: var(--black);
-		border-bottom: 4px solid transparent;
-		text-decoration: none;
-	}
-	nav a.active {
-		text-decoration: none;
-		border-bottom-color: var(--accent);
-	}
-
-	/* Menu toggle button */
-	.menu-toggle {
-		display: none;
-		flex-direction: column;
-		justify-content: space-between;
-		width: 30px;
-		height: 21px;
-		background: transparent;
-		border: none;
-		cursor: pointer;
-		padding: 0;
-		z-index: 10;
-	}
-
-	.menu-toggle span {
-		display: block;
-		width: 100%;
-		height: 3px;
-		background-color: rgb(var(--gray-dark));
-		border-radius: 3px;
-		transition: all 0.3s ease;
-	}
-
-	/* Mobile menu styles */
-	@media (max-width: 720px) {
-		.menu-toggle {
-			display: flex;
-		}
-
-		.internal-links {
-			display: flex;
-			flex-direction: column;
-			position: absolute;
-			top: 80px;
-			left: 0;
-			right: 0;
-			background: white;
-			box-shadow: 0 4px 8px rgba(var(--black), 5%);
-			padding: 1em;
-			transform: translateY(-100%);
-			opacity: 0;
-			visibility: hidden;
-			transition: all 0.3s ease;
-			z-index: -1;
-		}
-
-		.internal-links.active {
-			transform: translateY(0);
-			opacity: 1;
-			visibility: visible;
-			z-index: 999;
-		}
-
-		.internal-links a {
-			padding: 0.75em 0;
-			border-bottom: none;
-			border-left: 4px solid transparent;
-			padding-left: 0.75em;
-		}
-
-		.internal-links a.active {
-			border-bottom-color: transparent;
-			border-left-color: var(--accent);
-		}
-
-		/* Menu toggle animation */
-		.menu-toggle.active span:nth-child(1) {
-			transform: rotate(45deg) translate(6px, 6px);
-		}
-
-		.menu-toggle.active span:nth-child(2) {
-			opacity: 0;
-		}
-
-		.menu-toggle.active span:nth-child(3) {
-			transform: rotate(-45deg) translate(6px, -6px);
-		}
-	}
-
-	/* Desktop menu styles */
-	@media (min-width: 721px) {
-		.internal-links {
-			display: flex;
-			gap: 0.5em;
-		}
-	}
-</style>

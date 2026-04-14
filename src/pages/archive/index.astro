@@ -1,41 +1,44 @@
 ---
+import { SITE_DESCRIPTION, SITE_TITLE } from '../../consts';
 import { getCollection } from 'astro:content';
-import BaseHead from '../../components/BaseHead.astro';
-import Header from '../../components/Header.astro';
-import Footer from '../../components/Footer.astro';
 import FormattedDate from '../../components/FormattedDate.astro';
-import { SITE_TITLE } from '../../consts';
+import Layout from '../../layouts/Layout.astro';
 
-const posts = (await getCollection('blog')).sort(
-  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
-);
+// 从 Astro.props 中获取 post 数据
+const post = Astro.props;
+// 获取所有文章
+const allPosts = await getCollection('blog');
+
+// 按日期降序排序（最新的在前面）
+const sortedPosts = allPosts.sort((a, b) => {
+  return new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime();
+});
+
+// 将文章数据转换为组件需要的格式
+const archiveItems = sortedPosts.map(post => ({
+  title: post.data.title,
+  href: `/posts/${post.id}`,
+  pubDate: post.data.pubDate,
+  updatedDate: post.data.updatedDate,
+  description: post.data.description
+}));
 ---
-
-<!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-  <BaseHead title={`归档 - ${SITE_TITLE}`} />
-</head>
-<body>
-  <Header />
-  <main>
-    <h1 class="semi-typography semi-typography-primary semi-typography-normal semi-typography-h1">归档</h1>
-	<ul class="semi-timeline semi-timeline-left">
-      {posts.map(post => (
-		<li class="semi-timeline-item semi-typography semi-typography-normal semi-typography-link semi-timeline-item-left">
-			<div class="semi-timeline-item-tail" aria-hidden="true"></div>
-			<div class="semi-timeline-item-head semi-timeline-item-head-default" aria-hidden="true"></div>
-			<a href={`/posts/${post.id}`} class="semi-typography-link-text">
-			<div class="semi-timeline-item-content">
-			    {post.data.title}
-			    <div class="semi-timeline-item-content-time"><FormattedDate date={post.data.pubDate} /></div>
+<Layout title={SITE_TITLE} description={SITE_DESCRIPTION} {...post.data}>
+	<ul class="semi-timeline semi-timeline-alternate">
+		{archiveItems.map((item, index) => (
+		<li class={`semi-timeline-item semi-timeline-item-${index % 2 === 0 ? 'left' : 'right'}`}>
+			<div class="semi-timeline-item-tail"></div>
+			<div class="semi-timeline-item-head semi-timeline-item-head-ongoing"></div>
+			<a href={item.href}>
+			<div class="semi-timeline-item-content transform transition hover:-translate-y-2 motion-reduce:transition-none motion-reduce:hover:transform-none">
+				<div class="font-bold text-lg line-clamp-1">{item.title}</div>
+				<div class="semi-timeline-item-content-time"><FormattedDate date={item.pubDate} /></div>
 			</div>
 			</a>
-		</li>
-      ))}
-	</ul>
-    {posts.length === 0 && <p>暂无文章</p>}
-  </main>
-  <Footer />
-</body>
-</html>
+	</li>
+  ))}
+
+
+</ul>
+
+</Layout>

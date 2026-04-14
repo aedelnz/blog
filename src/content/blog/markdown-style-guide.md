@@ -1,15 +1,15 @@
 ---
-title: 'Markdown Style Guide'
-description: 'Here is a sample of some basic Markdown syntax that can be used when writing Markdown content in Astro.'
+title: 'Markdown 风格指南'
+description: '这里是一些基本 Markdown 语法的示例，可以在使用 Astro 编写 Markdown 内容时使用。'
 pubDate: 'Jun 19 2024'
 heroImage: '../../assets/blog-placeholder-1.jpg'
 ---
 
-Here is a sample of some basic Markdown syntax that can be used when writing Markdown content in Astro.
+这里是一些基本 Markdown 语法的示例，可以在使用 Astro 编写 Markdown 内容时使用。
 
-## Headings
+## 标题
 
-The following HTML `<h1>`—`<h6>` elements represent six levels of section headings. `<h1>` is the highest section level while `<h6>` is the lowest.
+以下 HTML `<h1>`—`<h6>` 元素表示六个级别的章节标题。`<h1>` 是最高的章节级别，而 `<h6>` 是最低的。
 
 # H1
 
@@ -23,61 +23,61 @@ The following HTML `<h1>`—`<h6>` elements represent six levels of section head
 
 ###### H6
 
-## Paragraph
+## 段落
 
-Xerum, quo qui aut unt expliquam qui dolut labo. Aque venitatiusda cum, voluptionse latur sitiae dolessi aut parist aut dollo enim qui voluptate ma dolestendit peritin re plis aut quas inctum laceat est volestemque commosa as cus endigna tectur, offic to cor sequas etum rerum idem sintibus eiur? Quianimin porecus evelectur, cum que nis nust voloribus ratem aut omnimi, sitatur? Quiatem. Nam, omnis sum am facea corem alique molestrunt et eos evelece arcillit ut aut eos eos nus, sin conecerem erum fuga. Ri oditatquam, ad quibus unda veliamenimin cusam et facea ipsamus es exerum sitate dolores editium rerore eost, temped molorro ratiae volorro te reribus dolorer sperchicium faceata tiustia prat.
+君子曰：学不可以已。青，取之于蓝，而青于蓝；冰，水为之，而寒于水。木直中绳，輮以为轮，其曲中规。虽有槁暴，不复挺者，輮使之然也。故木受绳则直，金就砺则利，君子博学而日参省乎己，则知明而行无过矣。
 
-Itatur? Quiatae cullecum rem ent aut odis in re eossequodi nonsequ idebis ne sapicia is sinveli squiatum, core et que aut hariosam ex eat.
+出自《荀子・劝学》。
 
-## Images
+## 图片
 
-### Syntax
+### 语法
 
 ```markdown
-![Alt text](./full/or/relative/path/of/image)
+![替代文本](./full/or/relative/path/of/image)
 ```
 
-### Output
+### 输出
 
-![blog placeholder](../../assets/blog-placeholder-1.jpg)
+![图片](../../assets/blog-placeholder-1.jpg)
 
-## Blockquotes
+## 引用
 
-The blockquote element represents content that is quoted from another source, optionally with a citation which must be within a `footer` or `cite` element, and optionally with in-line changes such as annotations and abbreviations.
+引用元素表示从另一个来源引用的内容，可选引用来源（必须在 `footer` 或 `cite` 元素内），可选内内变化（如注释和缩写）。
 
-### Blockquote without attribution
+### 引用无作者
 
-#### Syntax
+#### 语法
 
 ```markdown
 > Tiam, ad mint andaepu dandae nostion secatur sequo quae.  
 > **Note** that you can use _Markdown syntax_ within a blockquote.
 ```
 
-#### Output
+#### 输出
 
 > Tiam, ad mint andaepu dandae nostion secatur sequo quae.  
 > **Note** that you can use _Markdown syntax_ within a blockquote.
 
-### Blockquote with attribution
+### 引用有作者
 
-#### Syntax
+#### 语法
 
 ```markdown
 > Don't communicate by sharing memory, share memory by communicating.<br>
 > — <cite>Rob Pike[^1]</cite>
 ```
 
-#### Output
+#### 输出
 
 > Don't communicate by sharing memory, share memory by communicating.<br>
 > — <cite>Rob Pike[^1]</cite>
 
 [^1]: The above quote is excerpted from Rob Pike's [talk](https://www.youtube.com/watch?v=PAAkCSZUG1c) during Gopherfest, November 18, 2015.
 
-## Tables
+## 表格
 
-### Syntax
+### 语法
 
 ```markdown
 | Italics   | Bold     | Code   |
@@ -85,15 +85,15 @@ The blockquote element represents content that is quoted from another source, op
 | _italics_ | **bold** | `code` |
 ```
 
-### Output
+### 输出
 
 | Italics   | Bold     | Code   |
 | --------- | -------- | ------ |
 | _italics_ | **bold** | `code` |
 
-## Code Blocks
+## 代码块
 
-### Syntax
+### 语法
 
 we can use 3 backticks ``` in new line and write snippet and close with 3 backticks on new line and to highlight language specific syntax, write one word of language name after first 3 backticks, for eg. html, javascript, css, markdown, typescript, txt, bash
 
@@ -112,7 +112,7 @@ we can use 3 backticks ``` in new line and write snippet and close with 3 backti
 ```
 ````
 
-### Output
+### 输出
 
 ```html
 <!doctype html>
@@ -127,11 +127,11 @@ we can use 3 backticks ``` in new line and write snippet and close with 3 backti
 </html>
 ```
 
-## List Types
+## 列表类型
 
-### Ordered List
+### 有序列表
 
-#### Syntax
+#### 语法
 
 ```markdown
 1. First item
@@ -139,15 +139,15 @@ we can use 3 backticks ``` in new line and write snippet and close with 3 backti
 3. Third item
 ```
 
-#### Output
+#### 输出
 
 1. First item
 2. Second item
 3. Third item
 
-### Unordered List
+### 序列表
 
-#### Syntax
+#### 语法
 
 ```markdown
 - List item
@@ -155,15 +155,15 @@ we can use 3 backticks ``` in new line and write snippet and close with 3 backti
 - And another item
 ```
 
-#### Output
+#### 输出
 
 - List item
 - Another item
 - And another item
 
-### Nested list
+### 嵌套列表
 
-#### Syntax
+#### 语法
 
 ```markdown
 - Fruit
@@ -175,7 +175,7 @@ we can use 3 backticks ``` in new line and write snippet and close with 3 backti
   - Cheese
 ```
 
-#### Output
+#### 输出
 
 - Fruit
   - Apple
@@ -185,9 +185,9 @@ we can use 3 backticks ``` in new line and write snippet and close with 3 backti
   - Milk
   - Cheese
 
-## Other Elements — abbr, sub, sup, kbd, mark
+## 其他元素 — abbr, sub, sup, kbd, mark
 
-### Syntax
+### 语法
 
 ```markdown
 <abbr title="Graphics Interchange Format">GIF</abbr> is a bitmap image format.
@@ -201,7 +201,7 @@ Press <kbd>CTRL</kbd> + <kbd>ALT</kbd> + <kbd>Delete</kbd> to end the session.
 Most <mark>salamanders</mark> are nocturnal, and hunt for insects, worms, and other small creatures.
 ```
 
-### Output
+### 输出
 
 <abbr title="Graphics Interchange Format">GIF</abbr> is a bitmap image format.
 

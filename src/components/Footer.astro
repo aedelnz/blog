@@ -1,32 +1,11 @@
 ---
 import { SITE_TITLE } from "../consts";
-const today = new Date();
+const today = new Date().getFullYear();
 ---
-
-<footer>
-	<div class="footer">
-		&copy; 2020-<span id="copyright-year">{today.getFullYear()}</span> {SITE_TITLE}. All rights reserved. /
-		<a target="_blank" href="/rss.xml">RSS</a> /
-		Powered by <a target="_blank" href="https://astro.build">Astro</a>
+<footer class="semi-layout-footer container mt-auto py-4 px-8 mx-auto w-full text-center bg-white text-gray-800 rounded-tl-3xl rounded-tr-3xl shadow-inner">
+	<div class="semi-footer font-bold">
+		&copy; 2020-{today} {SITE_TITLE}. All rights reserved. /
+		<a target="_blank" href="/rss.xml" class="text-blue-600 no-underline hover:text-blue-900 hover:font-bold hover:underline">RSS</a> /
+		Powered by <a target="_blank" href="https://astro.build" class="text-blue-600 no-underline hover:text-blue-900 hover:font-bold hover:underline">Astro</a>
 	</div>
 </footer>
-<style>
-	footer {
-		padding: 2em 1em;
-		background: linear-gradient(var(--gray-gradient)) no-repeat;
-		color: rgb(var(--gray));
-		text-align: center;
-	}
-	footer .footer {
-		font-size: larger;
-	}
-	footer .footer a {
-		text-decoration: none;
-		color: rgb(var(--gray));
-	}
-	footer .footer a:hover {
-		color: rgb(var(--gray-dark));
-		font-weight: bolder;
-		text-decoration: underline;
-	}
-</style>
