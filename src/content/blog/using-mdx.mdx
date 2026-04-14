@@ -1,31 +1,31 @@
 ---
-title: 'Using MDX'
-description: 'Lorem ipsum dolor sit amet'
+title: '使用 MDX'
+description: '使用 MDX 来创建交互式的 Markdown 内容'
 pubDate: 'Jun 01 2024'
 heroImage: '../../assets/blog-placeholder-5.jpg'
 ---
 
-This theme comes with the [@astrojs/mdx](https://docs.astro.build/en/guides/integrations-guide/mdx/) integration installed and configured in your `astro.config.mjs` config file. If you prefer not to use MDX, you can disable support by removing the integration from your config file.
+主题默认包含了 [@astrojs/mdx](https://docs.astro.build/en/guides/integrations-guide/mdx/) 集成。
 
-## Why MDX?
+## 为什么使用 MDX？
 
-MDX is a special flavor of Markdown that supports embedded JavaScript & JSX syntax. This unlocks the ability to [mix JavaScript and UI Components into your Markdown content](https://docs.astro.build/en/guides/integrations-guide/mdx/#mdx-in-astro) for things like interactive charts or alerts.
+MDX 是一种特殊的 Markdown 版本，支持嵌入 JavaScript 和 JSX 语法。这使得你能够 [将 JavaScript 和 UI 组件混合到你的 Markdown 内容中](https://docs.astro.build/en/guides/integrations-guide/mdx/#mdx-in-astro)，用于诸如交互式图表或警示等功能。
 
-If you have existing content authored in MDX, this integration will hopefully make migrating to Astro a breeze.
+如果你已经有用 MDX 编写的现有内容，这个集成希望能使迁移到 Astro 变得非常轻松。
 
-## Example
+## 示例
 
-Here is how you import and use a UI component inside of MDX.  
-When you open this page in the browser, you should see the clickable button below.
+以下是如何在 MDX 中导入和使用 UI 组件。
+当你在浏览器中打开此页面时，你应该会看到下面可以点击的按钮。
 
 import HeaderLink from '../../components/HeaderLink.astro';
 
 <HeaderLink href="#" onclick="alert('clicked!')">
-	Embedded component in MDX
+	MDX中的嵌入组件
 </HeaderLink>
 
-## More Links
+## 更多链接
 
-- [MDX Syntax Documentation](https://mdxjs.com/docs/what-is-mdx)
-- [Astro Usage Documentation](https://docs.astro.build/en/basics/astro-pages/#markdownmdx-pages)
-- **Note:** [Client Directives](https://docs.astro.build/en/reference/directives-reference/#client-directives) are still required to create interactive components. Otherwise, all components in your MDX will render as static HTML (no JavaScript) by default.
+- [MDX 语法文档](https://mdxjs.com/docs/what-is-mdx)
+- [Astro 使用文档](https://docs.astro.build/en/basics/astro-pages/#markdownmdx-pages)
+- **注意:** [客户端指令](https://docs.astro.build/en/reference/directives-reference/#client-directives) 仍然需要创建交互式组件。否则，您 MDX 中的所有组件默认将渲染为静态 HTML（没有 JavaScript）。
