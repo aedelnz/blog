@@ -134,7 +134,12 @@ const bannerOffset =
 		<slot name="head"></slot>
 
 		<link rel="alternate" type="application/rss+xml" title={profileConfig.name} href={`${Astro.site}rss.xml`}/>
-
+		<script charset="UTF-8" id="LA_COLLECT" src="//sdk.51.la/js-sdk-pro.min.js"></script>
+		<script>LA.init({ id: "JMIJZqK4MvC0pOsF", ck: "JMIJZqK4MvC0pOsF" })</script>
+		<script src="https://sdk.51.la/perf/js-sdk-perf.min.js" crossorigin="anonymous"></script>
+		<script>
+          new LingQue.Monitor().init({ id: "K5mJO6H2n6QPd4MK" });
+		</script>
 	</head>
 	<body class=" min-h-screen transition " class:list={[{"lg:is-home": isHomePage, "enable-banner": enableBanner}]}
 		  data-overlayscrollbars-initialize
