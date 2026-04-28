@@ -28,11 +28,18 @@ const posts = (await getCollection("blog")).sort(
                   )}
                 </div>
                 <div class="flex-1 p-4">
+                  
+                <div class="flex mb-center items-center">
                   <div class="flex mb-center items-center">
                     <span role="img" aria-label="activity" class="semi-icon semi-icon-search"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" focusable="false" aria-hidden="true"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 1a1.5 1.5 0 0 0 0 3 8 8 0 1 1-4.75 14.44 1.5 1.5 0 1 0-1.79 2.4A11 11 0 1 0 12 1ZM7.5 5.2a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3ZM5.5 7a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0Zm-3 6a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3ZM5 16.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0Zm8.5-9a1.5 1.5 0 0 0-3 0V12c0 .4.16.78.44 1.06l3 3a1.5 1.5 0 0 0 2.12-2.12l-2.56-2.56V7.5Z" fill="currentColor"></path></svg></span>
                     <span class="text-gray-500 font-mono font-bold ml-2">{post.data.pubDate ? <FormattedDate date={post.data.pubDate} /> : '未知日期'}</span>
                   </div>
-                  
+                  <div class="flex mb-center items-center">
+                    {post.data.tags?.map((tag) => (
+                      <span class="text-sm font-mono text-gray-500 px-2 py-1 rounded-full bg-gray-100 mr-2 mb-1">{tag}</span>
+                    ))}
+                  </div>
+                </div>
                   <h3 class="text-lg font-bold mb-2 leading-tight line-clamp-2 hover:text-blue-600 transition-colors duration-200">{post.data.title}</h3>
                   <p class="text-gray-600 font-mono leading-relaxed line-clamp-3">{post.data.description || '暂无简介'}</p>
                 </div>
