@@ -17,7 +17,7 @@ export const siteConfig: SiteConfig = {
 	},
 	banner: {
 		enable: false,
-		src: "https://jixiejidiguan.top/root/bg.png", // Relative to the /src directory. Relative to the /public directory if it starts with '/'
+		src: "https://jixiejidiguan.top/favicon.png", // Relative to the /src directory. Relative to the /public directory if it starts with '/'
 		position: "center", // Equivalent to object-position, only supports 'top', 'center', 'bottom'. 'center' by default
 		credit: {
 			enable: false, // Display the credit text of the banner image
@@ -58,7 +58,7 @@ export const navBarConfig: NavBarConfig = {
 };
 
 export const profileConfig: ProfileConfig = {
-	avatar: "https://jixiejidiguan.top/root/tx.png", // Relative to the /src directory. Relative to the /public directory if it starts with '/'
+	avatar: "https://jixiejidiguan.top/favicon.png", // Relative to the /src directory. Relative to the /public directory if it starts with '/'
 	name: "麗姫を描く",
 	bio: " 一条咸鱼躺平养成计划！",
 	links: [
